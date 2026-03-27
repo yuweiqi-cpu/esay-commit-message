@@ -6,6 +6,7 @@
   "engines": {
     "vscode": "^1.110.0"
   },
+  "publisher": "yuweiqi-cpu",
   "repository": {
     "type": "git",
     "url": "https://github.com/yuweiqi-cpu/esay-commit-message.git"
