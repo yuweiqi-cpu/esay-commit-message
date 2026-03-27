@@ -1,0 +1,99 @@
+{
+  "name": "esay-commit-message",
+  "displayName": "esay-commit-message",
+  "description": "自动生成git提交信息的拓展",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.110.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yuweiqi-cpu/esay-commit-message.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:esayCommitMessage.generateMessage"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "esayCommitMessage.generateMessage",
+        "title": "生成提交信息",
+        "category": "Git"
+      }
+    ],
+    "menus": {
+      "command palette": [
+        {
+          "command": "esayCommitMessage.generateMessage"
+        }
+      ],
+      "scm/title": [
+        {
+          "command": "commitMessaesayCommitMessagegeHelper.generateMessage",
+          "when": "scmProvider == git",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "commitMeesayCommitMessagessageHelper.generateMessage",
+        "key": "ctrl+shift+g",
+        "mac": "cmd+shift+g",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Commit Message Helper",
+      "properties": {
+        "esayCommitMessage.aiModel": {
+          "type": "string",
+          "default": "rule-based",
+          "description": "选择使用的AI模型",
+          "enum": [
+            "rule-based",
+            "ai-enhanced"
+          ]
+        },
+        "esayCommitMessage.autoSuggest": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否自动建议提交信息"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.110.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.56.1",
+    "eslint": "^9.39.3",
+    "typescript": "^5.9.3",
+    "ts-loader": "^9.5.4",
+    "webpack": "^5.105.3",
+    "webpack-cli": "^6.0.1",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0"
+  },
+  "dependencies": {
+    "simple-git": "^3.16.0"
+  }
+}
